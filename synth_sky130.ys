@@ -1,0 +1,7 @@
+read_verilog seq_det.v
+synth -top seq_det -flatten
+dfflibmap -liberty sky130_tt.lib
+abc -liberty sky130_tt.lib -D 5000
+opt_clean
+write_verilog -noattr seq_det_sky130.v
+tee -o sky130_stat.txt stat -liberty sky130_tt.lib

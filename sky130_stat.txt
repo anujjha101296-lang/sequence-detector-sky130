@@ -1,0 +1,23 @@
+
+7. Printing statistics.
+
+=== seq_det ===
+
+   Number of wires:                 12
+   Number of wire bits:             16
+   Number of public wires:           5
+   Number of public wire bits:       9
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 12
+     sky130_fd_sc_hd__and3_1         2
+     sky130_fd_sc_hd__dfxtp_1        5
+     sky130_fd_sc_hd__nor2_1         1
+     sky130_fd_sc_hd__nor3_1         1
+     sky130_fd_sc_hd__nor3b_1        1
+     sky130_fd_sc_hd__o21ai_0        1
+     sky130_fd_sc_hd__o311a_1        1
+
+   Chip area for module '\seq_det': 143.888000
+
