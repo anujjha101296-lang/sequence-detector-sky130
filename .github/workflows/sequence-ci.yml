@@ -1,0 +1,28 @@
+name: Sequence Detector RTL CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+          iverilog -V
+      - name: RTL self-checking simulation
+        run: |
+          iverilog -g2012 -s tb -o sim_rtl seq_det.v tb.v
+          vvp sim_rtl | tee rtl.log
+          grep -E 'errors=0 .*PASS' rtl.log
+      - name: Gate-level self-checking simulation
+        run: |
+          iverilog -g2012 -DGATE -s tb -o sim_gate seq_det_gate.v tb.v
+          vvp sim_gate | tee gate.log
+          grep -E 'errors=0 .*PASS' gate.log
