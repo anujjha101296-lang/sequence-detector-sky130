@@ -23,7 +23,7 @@ jobs:
           python - <<'PY'
           import re
           s = open("rtl.log").read()
-          m = re.search(r"RESULT checks=(\\d+) detections=(\\d+) errors=(\\d+) (PASS|FAIL)", s)
+          m = re.search(r"RESULT checks=(\d+) detections=(\d+) errors=(\d+) (PASS|FAIL)", s)
           assert m, "RTL simulation summary missing"
           checks, detections, errors = map(int, m.group(1, 2, 3))
           assert checks >= 250000 and detections > 0 and errors == 0 and m.group(4) == "PASS", m.groups()
@@ -36,7 +36,7 @@ jobs:
           python - <<'PY'
           import re
           s = open("gate.log").read()
-          m = re.search(r"RESULT checks=(\\d+) detections=(\\d+) errors=(\\d+) (PASS|FAIL)", s)
+          m = re.search(r"RESULT checks=(\d+) detections=(\d+) errors=(\d+) (PASS|FAIL)", s)
           assert m, "Gate simulation summary missing"
           checks, detections, errors = map(int, m.group(1, 2, 3))
           assert checks >= 250000 and detections > 0 and errors == 0 and m.group(4) == "PASS", m.groups()
